@@ -7,12 +7,46 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 
 public class Gripper extends SubsystemBase {
-    private WPI_TalonSRX gripperMotor;
+    private WPI_TalonSRX m_gripperTalon;
 
     public Gripper() {
-        gripperMotor = new WPI_TalonSRX(4);
+        m_gripperTalon = new WPI_TalonSRX(4);
+
+        m_gripperTalon.configFactoryDefault();
+        m_gripperTalon.configPeakCurrentLimit(15, Constants.defaultTimeout);
+        m_gripperTalon.configPeakCurrentDuration(500, Constants.defaultTimeout);
+        m_gripperTalon.configContinuousCurrentLimit(10, Constants.defaultTimeout);
+        m_gripperTalon.enableCurrentLimit(true);
+
+        m_gripperTalon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, Constants.defaultTimeout);
+        //m_gripperTalon.setSelectedSensorPosition(RobotMap.Elevator.START_POSITION, 0, Constants.defaultTimeout);
+        m_gripperTalon.setSensorPhase(false);
+        m_gripperTalon.setInverted(false);
+
+        m_gripperTalon.setNeutralMode(NeutralMode.Brake);
+
+        m_gripperTalon.configNominalOutputForward(0, Constants.defaultTimeout);
+        m_gripperTalon.configNominalOutputReverse(0, Constants.defaultTimeout);
+        m_gripperTalon.configPeakOutputForward(1, Constants.defaultTimeout);
+        m_gripperTalon.configPeakOutputReverse(-1, Constants.defaultTimeout);
+
+        m_gripperTalon.configForwardSoftLimitThreshold(Constants.GripperConstants.forwardSoftLimit, Constants.defaultTimeout);
+        m_gripperTalon.configForwardSoftLimitEnable(true);
+
+        m_gripperTalon.configForwardSoftLimitThreshold(Constants.GripperConstants.backwardSoftLimit, Constants.defaultTimeout);
+        m_gripperTalon.configForwardSoftLimitEnable(true);
+
+        m_gripperTalon.selectProfileSlot(0, 0);
+        m_gripperTalon.config_kF(0, 0, Constants.defaultTimeout);
+        m_gripperTalon.config_kP(0, 0, Constants.defaultTimeout);
+        m_gripperTalon.config_kI(0, 0, Constants.defaultTimeout);
+        m_gripperTalon.config_kD(0, 0, Constants.defaultTimeout);
+        m_gripperTalon.configMotionCruiseVelocity(4667, Constants.defaultTimeout);
+        m_gripperTalon.configMotionAcceleration(4667, Constants.defaultTimeout);
     }
 
     @Override
@@ -29,12 +63,14 @@ public class Gripper extends SubsystemBase {
 
     // command for open gripper
     public CommandBase openCommand() {
-        return this.runOnce(() -> gripperMotor.set(ControlMode.Position, Constants.GripperConstants.openPosition));
+        return this.runOnce(() -> m_gripperTalon.set(ControlMode.Position, Constants.GripperConstants.openPosition));
     }
 
     // Command for close gripper
     public CommandBase closeCommand() {
-        return this.runOnce(() -> gripperMotor.set(ControlMode.Position, Constants.GripperConstants.closePosition));
+        return this.runOnce(() -> m_gripperTalon.set(ControlMode.Position, Constants.GripperConstants.closePosition));
     }
 }
+
+
 

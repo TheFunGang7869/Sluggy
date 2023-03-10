@@ -5,33 +5,20 @@ import frc.robot.Constants;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.revrobotics.RelativeEncoder;
-import com.revrobotics.SparkMaxPIDController;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 public class Arm extends SubsystemBase {
     private CANSparkMax m_armMotor1;
-    private CANSparkMax m_armMotor2;
-
-    private SparkMaxPIDController m_pidController;
-    private RelativeEncoder m_encoder;
-    //public double kP, kI, kD, kIz, kFF, kMaxOutput, kMinOutput, maxRPM, maxVel, minVel, maxAcc, allowedErr;
+    private RelativeEncoder m_encoder; //TODO: set up units!
 
     public Arm() {
         m_armMotor1 = new CANSparkMax(10, MotorType.kBrushless);
-       
-        m_armMotor2 = new CANSparkMax(11, MotorType.kBrushless);
-        m_armMotor2.follow(m_armMotor1);
+        m_armMotor1.setIdleMode(IdleMode.kBrake);
+        m_armMotor1.setInverted(false);
 
-        m_pidController = m_armMotor1.getPIDController();
         m_encoder = m_armMotor1.getEncoder();
-
-        m_pidController.setP(Constants.ArmConstants.kP);
-        m_pidController.setI(Constants.ArmConstants.kI);
-        m_pidController.setD(Constants.ArmConstants.kD);
-        m_pidController.setIZone(Constants.ArmConstants.kIz);
-        m_pidController.setFF(Constants.ArmConstants.kFF);
-        m_pidController.setOutputRange(Constants.ArmConstants.kMinOutput, Constants.ArmConstants.kMaxOutput);
     }
 
     @Override
@@ -46,23 +33,19 @@ public class Arm extends SubsystemBase {
 
     }
 
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
-
-    public void armForward() {
-        m_pidController.setReference(Constants.ArmConstants.forwardPosition, CANSparkMax.ControlType.kPosition);
-        //TODO: set arbitrary feed forward! w*cos(angle)
-
+    public double getArmPosition(){
+        return m_encoder.getPosition();
     }
 
-    public void armBackward() {
-        m_pidController.setReference(Constants.ArmConstants.backwardPosition, CANSparkMax.ControlType.kPosition);
-        //armTalonSRX1.set(ControlMode.Position, 0);
+    public void setArmPower(double power){
+        m_armMotor1.set(power);
     }
 
-    public void abort() {
-      //  armTalonSRX1.set()
-        //to do for later, cancel movement
+    public void abort(){
+        m_armMotor1.set(0);
     }
+
+    public void armForward() {}
+    public void armBackward() {}
 }
 
