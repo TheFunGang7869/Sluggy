@@ -22,6 +22,12 @@ package frc.robot;
 public class Constants {
     public static final int defaultTimeout = 30; //milliseconds
 
+    public enum ArmSetpoint {
+        LOW,
+        MID,
+        HIGH
+      }    
+
     public static final class DriveConstants {
         public static final double joystickYPower = 1.3;
         public static final double joystickXPower = 1.8;
@@ -59,7 +65,7 @@ public class Constants {
         public static final double intakePosition = 0;
         public static final double lowPlacePosition = 0;
         public static final double midPlacePosition = 0;
-        public static final double highPlacePositon = 0;
+        public static final double highPlacePosition = 0;
         public static final double stowPosition = 0;
     }
 

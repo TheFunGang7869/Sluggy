@@ -5,9 +5,15 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.Joystick.AxisType;
+import edu.wpi.first.wpilibj.Joystick.ButtonType;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+
+import frc.robot.Constants.ArmSetpoint;
 
 public class RobotContainer {
   private static RobotContainer m_robotContainer = new RobotContainer();
@@ -24,6 +30,9 @@ private final XboxController xboxController = new XboxController(1);
   
   // A chooser for autonomous commands
   SendableChooser<Command> m_chooser = new SendableChooser<>();
+
+  // Current place setpoint
+  ArmSetpoint m_armSetpoint = ArmSetpoint.LOW;
 
   /**
   * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -57,7 +66,26 @@ private final XboxController xboxController = new XboxController(1);
     JoystickBoolean jbBackward=new JoystickBoolean(false, joystick);
     Trigger backwardTrigger = new Trigger(jbBackward::get);
     backwardTrigger.onTrue(new MoveArmBackward(m_arm));
+
+    new JoystickButton(joystick, ButtonType.kTrigger.value).onTrue(Commands.runOnce(() -> setArmSetpointLow()));
+    new JoystickButton(joystick, ButtonType.kTrigger.value).onTrue(Commands.runOnce(() -> setArmSetpointMid()));
+    new JoystickButton(joystick, ButtonType.kTrigger.value).onTrue(Commands.runOnce(() -> setArmSetpointHigh()));
+
+    new JoystickButton(joystick, ButtonType.kTrigger.value).onTrue(new ActivatePlace(m_arm, m_extender, m_intake, m_armSetpoint));
   }
+
+  public void setArmSetpointLow(){
+    m_armSetpoint = ArmSetpoint.LOW;
+  }
+
+  public void setArmSetpointMid(){
+    m_armSetpoint = ArmSetpoint.MID;
+  }
+
+  public void setArmSetpointHigh(){
+    m_armSetpoint = ArmSetpoint.HIGH;
+  }
+
 
 public XboxController getXboxController() {
       return xboxController;
