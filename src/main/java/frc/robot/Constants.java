@@ -20,6 +20,8 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public class Constants {
+    public static final int defaultTimeout = 30; //milliseconds
+
     public static final class DriveConstants {
         public static final double joystickYPower = 1.3;
         public static final double joystickXPower = 1.8;
@@ -34,6 +36,15 @@ public class Constants {
     public static final class ExtenderConstants {
         public static final double extendPosition = 10;
         public static final double retractPosition = 3;
+        public static final double forwardLimit = 0;
+        public static final double backwardLimit = 0;
+        public static final double kP = 0; 
+        public static final double kI = 0; 
+        public static final double kD = 0; 
+        public static final double kIz = 0;
+        public static final double kFF = 0; 
+        public static final double kMaxOutput = 1; 
+        public static final double kMinOutput = -1;
     }
 
     public static final class GripperConstants {
@@ -52,6 +63,10 @@ public class Constants {
 
         public static final double forwardPosition = 0;
         public static final double backwardPosition = 0;
+        public static final double conversion = 10;
+
+        public static final double maxFF = 0;
+        public static final double minFF = 0;
     }
 
 
