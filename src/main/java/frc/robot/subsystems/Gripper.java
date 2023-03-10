@@ -1,7 +1,7 @@
 package frc.robot.subsystems;
 
 import frc.robot.Constants;
-
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -52,6 +52,8 @@ public class Gripper extends SubsystemBase {
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
+        
+        SmartDashboard.putNumber("Gripper Position", getGripperPosition());
 
     }
 
@@ -59,6 +61,10 @@ public class Gripper extends SubsystemBase {
     public void simulationPeriodic() {
         // This method will be called once per scheduler run when in simulation
 
+    }
+
+    public double getGripperPosition() {
+        return m_gripperTalon.getSelectedSensorPosition();
     }
 
     // command for open gripper

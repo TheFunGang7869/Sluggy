@@ -1,7 +1,7 @@
 package frc.robot.subsystems;
 
 import frc.robot.Constants;
-
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.revrobotics.RelativeEncoder;
@@ -19,12 +19,13 @@ public class Arm extends SubsystemBase {
         m_armMotor1.setInverted(false);
 
         m_encoder = m_armMotor1.getEncoder();
+        m_encoder.setPositionConversionFactor(1); //units!!
     }
 
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
-
+        SmartDashboard.putNumber("Arm Position", getArmPosition());
     }
 
     @Override
