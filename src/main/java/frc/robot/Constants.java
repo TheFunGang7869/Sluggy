@@ -32,6 +32,7 @@ public class Constants {
         public static final double joystickYPower = 1.3;
         public static final double joystickXPower = 1.8;
         public static final double joystickYScale = 0.8;
+        public static double halfSpeed = 0.5;
     }
 
     public static final class AutoConstants {

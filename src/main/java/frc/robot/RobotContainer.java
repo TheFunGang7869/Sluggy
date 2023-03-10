@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.Joystick.AxisType;
 import edu.wpi.first.wpilibj.Joystick.ButtonType;
+import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
@@ -60,18 +61,21 @@ private final XboxController xboxController = new XboxController(1);
     // on pushing the joystick fully forward, trigger "move forward" command
     JoystickBoolean jbForward=new JoystickBoolean(true, joystick);
     Trigger forwardTrigger = new Trigger(jbForward::get);
-    forwardTrigger.onTrue(new MoveArmForward(m_arm));
+    forwardTrigger.onTrue(new SetArmPosition(m_arm, Constants.ArmConstants.forwardPosition));
 
     // on pushing the joystick fully backward, trigger "move backward" command
     JoystickBoolean jbBackward=new JoystickBoolean(false, joystick);
     Trigger backwardTrigger = new Trigger(jbBackward::get);
-    backwardTrigger.onTrue(new MoveArmBackward(m_arm));
+    backwardTrigger.onTrue(new SetArmPosition(m_arm, Constants.ArmConstants.backwardPosition));
 
     new JoystickButton(joystick, ButtonType.kTrigger.value).onTrue(Commands.runOnce(() -> setArmSetpointLow()));
     new JoystickButton(joystick, ButtonType.kTrigger.value).onTrue(Commands.runOnce(() -> setArmSetpointMid()));
     new JoystickButton(joystick, ButtonType.kTrigger.value).onTrue(Commands.runOnce(() -> setArmSetpointHigh()));
 
     new JoystickButton(joystick, ButtonType.kTrigger.value).onTrue(new ActivatePlace(m_arm, m_extender, m_intake, m_armSetpoint));
+
+    new JoystickButton(xboxController, Button.kLeftBumper.value).whileTrue(new HalfSpeedTankDrive(() -> xboxController.getLeftY(), 
+            () -> xboxController.getRightX(), m_driveTrain));
   }
 
   public void setArmSetpointLow(){
