@@ -44,6 +44,7 @@ public class Constants {
 
         public static final double extendPosition = 10;
         public static final double retractPosition = 3;
+        public static final double extenderPower = 0.2;
     }
 
     public static final class GripperConstants {

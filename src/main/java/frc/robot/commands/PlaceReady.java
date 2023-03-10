@@ -5,22 +5,16 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.Constants;
+
 import frc.robot.subsystems.*;
 
 /** Add your docs here. */
-public class ActivateIntake extends SequentialCommandGroup {
+public class PlaceReady extends SequentialCommandGroup {
 
-    public ActivateIntake(Arm arm, Extender extender, Gripper gripper) {
+    public PlaceReady(Gripper gripper, Extender extender) {
         addCommands(
             
-    new SetArmPosition(arm, Constants.ArmConstants.intakePosition),
-
-    new SetExtenderPosition(extender, Constants.ExtenderConstants.extendPosition),
-
-    gripper.openCommand()
-    );
-    
+        );
     }
 
 }
