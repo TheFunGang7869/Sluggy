@@ -9,20 +9,9 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.subsystems.*;
 
 /** Add your docs here. */
-public class ActivateIntake extends SequentialCommandGroup {
-
-    public ActivateIntake(Arm arm, Extender extender, Gripper gripper) {
-        addCommands(
-            
-    new MoveArmForward(
-        arm
-     ),
-
-    extender.extendCommand(),
+public class IntakeReady extends SequentialCommandGroup {
     
-    gripper.openCommand()
-    );
-    
+    public IntakeReady() {
+        addCommands();
     }
-
-}
+}    
