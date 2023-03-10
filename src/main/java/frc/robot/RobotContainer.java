@@ -43,6 +43,11 @@ private final XboxController xboxController = new XboxController(1);
     SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
     m_chooser.setDefaultOption("Autonomous Command", new AutonomousCommand());
     SmartDashboard.putData("Auto Mode", m_chooser); */
+    SmartDashboard.putData("arm position high", new SetArmPosition(m_arm, Constants.ArmConstants.highPlacePosition));
+    SmartDashboard.putData("arm position medium", new SetArmPosition(m_arm, Constants.ArmConstants.midPlacePosition));
+    SmartDashboard.putData("arm position low", new SetArmPosition(m_arm, Constants.ArmConstants.lowPlacePosition));
+
+
 
     // Configure the button bindings
     configureButtonBindings();
@@ -67,11 +72,17 @@ private final XboxController xboxController = new XboxController(1);
     Trigger backwardTrigger = new Trigger(jbBackward::get);
     backwardTrigger.onTrue(new MoveArmBackward(m_arm));
 
-    new JoystickButton(joystick, ButtonType.kTrigger.value).onTrue(Commands.runOnce(() -> setArmSetpointLow()));
-    new JoystickButton(joystick, ButtonType.kTrigger.value).onTrue(Commands.runOnce(() -> setArmSetpointMid()));
-    new JoystickButton(joystick, ButtonType.kTrigger.value).onTrue(Commands.runOnce(() -> setArmSetpointHigh()));
+    new JoystickButton(joystick, 8).onTrue(Commands.runOnce(() -> setArmSetpointLow()));
+    new JoystickButton(joystick, 7).onTrue(Commands.runOnce(() -> setArmSetpointMid()));
+    new JoystickButton(joystick, 6).onTrue(Commands.runOnce(() -> setArmSetpointHigh()));
 
-    new JoystickButton(joystick, ButtonType.kTrigger.value).onTrue(new ActivatePlace(m_arm, m_extender, m_intake, m_armSetpoint));
+    new JoystickButton(joystick, 3).onTrue(new ActivatePlace(m_arm, m_extender, m_intake, m_armSetpoint));
+
+    new JoystickButton(joystick, 1).onTrue(new ExecutePlace(m_arm, m_extender, m_intake));
+
+    new JoystickButton(joystick, 4).onTrue(new ActivateIntake(m_arm, m_extender, m_intake));
+
+    new JoystickButton(joystick, 5). onTrue(new ExecuteIntake(m_arm, m_extender, m_intake));
   }
 
   public void setArmSetpointLow(){
