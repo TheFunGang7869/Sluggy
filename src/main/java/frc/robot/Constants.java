@@ -33,6 +33,7 @@ public class Constants {
         public static final double joystickXPower = 1.8;
         public static final double joystickYScale = 0.8;
         public static final double joystickXScale = 0.6;
+        public static double halfSpeed = 0.5;
     }
 
     public static final class AutoConstants {
@@ -49,8 +50,11 @@ public class Constants {
     }
 
     public static final class GripperConstants {
-        public static final double forwardSoftLimit = 100;
-        public static final double backwardSoftLimit = -100;
+        /* public static final double forwardSoftLimit = 100;
+        public static final double backwardSoftLimit = -100;*/
+
+        public static final double gripperPower = 0.1;
+        public static final double positionTolerance = 0.01;
 
         public static final double openPosition = 1;
         public static final double closePosition = 2;

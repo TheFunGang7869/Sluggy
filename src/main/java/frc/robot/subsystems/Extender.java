@@ -1,26 +1,25 @@
 package frc.robot.subsystems;
 
 import frc.robot.Constants;
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.revrobotics.RelativeEncoder;
+import com.revrobotics.CANSparkMax.IdleMode;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 public class Extender extends SubsystemBase {
-    private WPI_TalonSRX extenderTalonSRX;
-
-    private Encoder m_encoder;
+    private CANSparkMax m_extenderSparkMax;
+    private RelativeEncoder m_encoder; //TODO: set up units!
 
     public Extender() {
-        extenderTalonSRX = new WPI_TalonSRX(8);
-        // extenderTalonSRX.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, Constants.defaultTimeout);
+        m_extenderSparkMax = new CANSparkMax(8, MotorType.kBrushless);
+        m_extenderSparkMax.setIdleMode(IdleMode.kBrake);
+        m_extenderSparkMax.setInverted(false);
 
-        m_encoder = new Encoder(0, 0);
-        m_encoder.setDistancePerPulse(1);
+        m_encoder = m_extenderSparkMax.getEncoder();
+        m_encoder.setPositionConversionFactor(1); //units!!
      }
 
     @Override
@@ -36,25 +35,15 @@ public class Extender extends SubsystemBase {
 
     public double getExtenderPosition(){
         //return extenderTalonSRX.getSelectedSensorPosition();
-        return m_encoder.getDistance();
+        return m_encoder.getPosition();
     }
 
     public void setExtenderPower(double power){
-        extenderTalonSRX.set(power);
+        m_extenderSparkMax.set(power);
     }
 
     public void abort(){
-        extenderTalonSRX.set(0);
-    }
-
-    // Command for full extend
-    public CommandBase extendCommand() {
-        return this.runOnce(() -> extenderTalonSRX.set(ControlMode.Position, Constants.ExtenderConstants.extendPosition));
-    }
-
-    // Command for full extend
-    public CommandBase retractCommand() {
-        return this.runOnce(() -> extenderTalonSRX.set(ControlMode.Position, Constants.ExtenderConstants.retractPosition));
+        m_extenderSparkMax.set(0);
     }
 }
 

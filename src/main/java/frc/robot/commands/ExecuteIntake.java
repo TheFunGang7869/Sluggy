@@ -14,8 +14,7 @@ public class ExecuteIntake extends SequentialCommandGroup {
     public ExecuteIntake(Arm arm, Extender extender, Gripper gripper) {
         addCommands(
 
-    gripper.closeCommand(),
-
+    new SetGripperPosition(gripper, Constants.GripperConstants.closePosition), 
     new SetExtenderPosition(extender, Constants.ExtenderConstants.retractPosition),
 
     new SetArmPosition(arm, Constants.ArmConstants.stowPosition)

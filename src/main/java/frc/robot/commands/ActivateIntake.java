@@ -18,7 +18,7 @@ public class ActivateIntake extends SequentialCommandGroup {
 
     new SetExtenderPosition(extender, Constants.ExtenderConstants.extendPosition),
 
-    gripper.openCommand()
+    new SetGripperPosition(gripper, Constants.GripperConstants.openPosition) 
     );
     
     }

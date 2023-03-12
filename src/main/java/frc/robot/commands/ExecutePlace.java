@@ -14,7 +14,7 @@ public class ExecutePlace extends SequentialCommandGroup {
     public ExecutePlace(Arm arm, Extender extender, Gripper gripper) {
         addCommands(
 
-    gripper.openCommand(),
+        new SetGripperPosition(gripper, Constants.GripperConstants.openPosition), 
 
     new SetExtenderPosition(extender, Constants.ExtenderConstants.retractPosition),
 
