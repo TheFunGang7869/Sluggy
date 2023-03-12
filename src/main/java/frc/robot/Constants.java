@@ -32,11 +32,12 @@ public class Constants {
         public static final double joystickYPower = 1.3;
         public static final double joystickXPower = 1.8;
         public static final double joystickYScale = 0.8;
+        public static final double joystickXScale = 0.6;
     }
 
     public static final class AutoConstants {
-        public static final double autoTime = 5;
-        public static final double autoSpeed = .8;
+        public static final double autoTime = 12.5;
+        public static final double autoSpeed = 0.4;
     }
 
     public static final class ExtenderConstants {
@@ -56,18 +57,19 @@ public class Constants {
     }
 
     public static final class ArmConstants {
-        public static final double armPower = 0.5;
-        public static final double positionTolerance = 0.05;
+        public static final double armPower = 0.3;
+        public static final double positionTolerance = 1;
 
         public static final double forwardPosition = 0;
         public static final double backwardPosition = 0;
 
         // these are all on the front of the robot, for now
-        public static final double intakePosition = 0;
+        public static final double intakePosition = 77.59;
         public static final double lowPlacePosition = 0;
-        public static final double midPlacePosition = 0;
+        public static final double midPlacePosition = 57.09;
         public static final double highPlacePosition = 0;
-        public static final double stowPosition = 0;
+        public static final double stowPosition = 2.46;
+        public static double absRelConversion;
     }
 
 

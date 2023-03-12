@@ -19,9 +19,9 @@ public class RobotContainer {
   private static RobotContainer m_robotContainer = new RobotContainer();
 
   // The robot's subsystems
-  public final Extender m_extender = new Extender();
+  //public final Extender m_extender = new Extender();
     public final Arm m_arm = new Arm();
-    public final Gripper m_intake = new Gripper();
+    //public final Gripper m_intake = new Gripper(); 
     public final DriveTrain m_driveTrain = new DriveTrain();
 
 // Joysticks
@@ -34,19 +34,20 @@ private final XboxController xboxController = new XboxController(1);
   // Current place setpoint
   ArmSetpoint m_armSetpoint = ArmSetpoint.LOW;
 
+  private AutonomousCommand autoCommand = new AutonomousCommand(m_driveTrain);
+
   /**
   * The container for the robot.  Contains subsystems, OI devices, and commands.
   */
   private RobotContainer() {
     // Smartdashboard stuff... when we get to it
     /* SmartDashboard.putData(m_driveTrain);
-    SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
-    m_chooser.setDefaultOption("Autonomous Command", new AutonomousCommand());
+    SmartDashboard.putData("Autonomous Command", new AutonomousCommand(m_driveTrain));
+    m_chooser.setDefaultOption("Autonomous Command", new AutonomousCommand(m_driveTrain));
     SmartDashboard.putData("Auto Mode", m_chooser); */
-    SmartDashboard.putData("arm position high", new SetArmPosition(m_arm, Constants.ArmConstants.highPlacePosition));
+    SmartDashboard.putData("arm position intake", new SetArmPosition(m_arm, Constants.ArmConstants.intakePosition));
     SmartDashboard.putData("arm position medium", new SetArmPosition(m_arm, Constants.ArmConstants.midPlacePosition));
-    SmartDashboard.putData("arm position low", new SetArmPosition(m_arm, Constants.ArmConstants.lowPlacePosition));
-
+    SmartDashboard.putData("arm position stow", new SetArmPosition(m_arm, Constants.ArmConstants.stowPosition));
 
 
     // Configure the button bindings
@@ -63,7 +64,7 @@ private final XboxController xboxController = new XboxController(1);
 
   private void configureButtonBindings() {
     // on pushing the joystick fully forward, trigger "move forward" command
-    JoystickBoolean jbForward=new JoystickBoolean(true, joystick);
+    /* JoystickBoolean jbForward=new JoystickBoolean(true, joystick);
     Trigger forwardTrigger = new Trigger(jbForward::get);
     forwardTrigger.onTrue(new MoveArmForward(m_arm));
 
@@ -82,7 +83,7 @@ private final XboxController xboxController = new XboxController(1);
 
     new JoystickButton(joystick, 4).onTrue(new ActivateIntake(m_arm, m_extender, m_intake));
 
-    new JoystickButton(joystick, 5). onTrue(new ExecuteIntake(m_arm, m_extender, m_intake));
+    new JoystickButton(joystick, 5). onTrue(new ExecuteIntake(m_arm, m_extender, m_intake)); */
   }
 
   public void setArmSetpointLow(){
@@ -115,7 +116,8 @@ public Joystick getJoystick() {
   */
   public Command getAutonomousCommand() {
     // The selected command will be run in autonomous
-    return m_chooser.getSelected();
+    // return m_chooser.getSelected();
+    return autoCommand;
   }
   
 
