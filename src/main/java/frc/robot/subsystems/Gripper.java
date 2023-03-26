@@ -14,7 +14,7 @@ public class Gripper extends SubsystemBase {
     private WPI_TalonSRX m_gripperTalon;
 
     public Gripper() {
-        m_gripperTalon = new WPI_TalonSRX(4); //TODO fix this
+        m_gripperTalon = new WPI_TalonSRX(9);
 
         /* m_gripperTalon.configFactoryDefault();
         m_gripperTalon.configPeakCurrentLimit(15, Constants.defaultTimeout);
