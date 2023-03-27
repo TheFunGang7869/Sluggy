@@ -54,6 +54,7 @@ public class Constants {
         public static final double backwardSoftLimit = -100;*/
 
         public static final double gripperPower = 0.2;
+        public static final double gripperTime = 1.0;
         public static final double positionTolerance = 0.1;
 
         public static final double openPosition = 1;
