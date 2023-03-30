@@ -45,7 +45,7 @@ public class Arm extends SubsystemBase {
         SmartDashboard.putNumber("arm percent output", armMotor1.getAppliedOutput());
         SmartDashboard.putBoolean("Limit switch", limitSwitch.get());
 
-        if(limitSwitch.get())
+        if(!limitSwitch.get())
         {
             relEncoder.setPosition(0);
             armMotor1.set(0);

@@ -46,6 +46,7 @@ public class TankDrive extends CommandBase {
         left = axisFilter(left, Constants.DriveConstants.joystickYPower);
         left = left * Constants.DriveConstants.joystickYScale;
         right = axisFilter(right, Constants.DriveConstants.joystickXPower);
+        right = right * Constants.DriveConstants.joystickXScale;
 
         m_driveTrain.drive(left, right);
     }
