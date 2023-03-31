@@ -14,7 +14,7 @@ import frc.robot.Constants.ArmSetpoint;
 public class ActivatePlace extends SequentialCommandGroup {
     private static double arm_setpoint;
 
-    public ActivatePlace(Arm arm, Extender extender, Gripper gripper, ArmSetpoint setpoint) {
+    public ActivatePlace(Arm arm, Extender extender, ArmSetpoint setpoint) {
         if (setpoint == ArmSetpoint.HIGH) {
             arm_setpoint = Constants.ArmConstants.highPlacePosition;
         }

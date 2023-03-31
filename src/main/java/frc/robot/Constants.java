@@ -75,6 +75,15 @@ public class Constants {
         public static final double highPlacePosition = 0;
         public static final double stowPosition = 2.46;
         public static double absRelConversion;
+
+
+        public static final double kP = 0.0;
+        public static final double kI = 0.0;
+        public static final double kD = 0.0;
+        public static final double kIz = 0.0;
+        public static final double kFF = 0.0;
+        public static final double kMaxOutput = 0.0;
+        public static final double kMinOutput = 0.0;
     }
 
 

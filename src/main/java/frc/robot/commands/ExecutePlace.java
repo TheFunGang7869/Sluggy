@@ -11,10 +11,8 @@ import frc.robot.subsystems.*;
 /** Add your docs here. */
 public class ExecutePlace extends SequentialCommandGroup {
     
-    public ExecutePlace(Arm arm, Extender extender, Gripper gripper) {
+    public ExecutePlace(Arm arm, Extender extender) {
         addCommands(
-
-        new SetGripperPosition(gripper, Constants.GripperConstants.openPosition), 
 
     new SetExtenderPosition(extender, Constants.ExtenderConstants.retractPosition),
 

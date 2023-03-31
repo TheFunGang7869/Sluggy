@@ -11,10 +11,9 @@ import frc.robot.subsystems.*;
 /** Add your docs here. */
 public class ExecuteIntake extends SequentialCommandGroup {
     
-    public ExecuteIntake(Arm arm, Extender extender, Gripper gripper) {
+    public ExecuteIntake(Arm arm, Extender extender) {
         addCommands(
 
-    new SetGripperPosition(gripper, Constants.GripperConstants.closePosition), 
     new SetExtenderPosition(extender, Constants.ExtenderConstants.retractPosition),
 
     new SetArmPosition(arm, Constants.ArmConstants.stowPosition)

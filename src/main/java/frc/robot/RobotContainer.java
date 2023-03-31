@@ -20,9 +20,8 @@ public class RobotContainer {
   private static RobotContainer m_robotContainer = new RobotContainer();
 
   // The robot's subsystems
-  //public final Extender m_extender = new Extender();
+  public final Extender m_extender = new Extender();
     public final Arm m_arm = new Arm();
-    //public final Gripper m_intake = new Gripper(); 
     public final DriveTrain m_driveTrain = new DriveTrain();
 
 // Joysticks
@@ -65,7 +64,7 @@ private final XboxController xboxController = new XboxController(1);
 
   private void configureButtonBindings() {
     // on pushing the joystick fully forward, trigger "move forward" command
-    /* JoystickBoolean jbForward=new JoystickBoolean(true, joystick);
+    JoystickBoolean jbForward=new JoystickBoolean(true, joystick);
     Trigger forwardTrigger = new Trigger(jbForward::get);
     forwardTrigger.onTrue(new SetArmPosition(m_arm, Constants.ArmConstants.forwardPosition));
 
@@ -78,13 +77,13 @@ private final XboxController xboxController = new XboxController(1);
     new JoystickButton(joystick, 7).onTrue(Commands.runOnce(() -> setArmSetpointMid()));
     new JoystickButton(joystick, 6).onTrue(Commands.runOnce(() -> setArmSetpointHigh()));
 
-    new JoystickButton(joystick, 3).onTrue(new ActivatePlace(m_arm, m_extender, m_intake, m_armSetpoint));
+    new JoystickButton(joystick, 3).onTrue(new ActivatePlace(m_arm, m_extender, m_armSetpoint));
 
-    new JoystickButton(joystick, 1).onTrue(new ExecutePlace(m_arm, m_extender, m_intake));
+    new JoystickButton(joystick, 1).onTrue(new ExecutePlace(m_arm, m_extender));
 
-    new JoystickButton(joystick, 4).onTrue(new ActivateIntake(m_arm, m_extender, m_intake));
+    new JoystickButton(joystick, 4).onTrue(new ActivateIntake(m_arm, m_extender));
 
-    new JoystickButton(joystick, 5). onTrue(new ExecuteIntake(m_arm, m_extender, m_intake)); */
+    new JoystickButton(joystick, 5). onTrue(new ExecuteIntake(m_arm, m_extender));
 
     /*new JoystickButton(xboxController, Button.kLeftBumper.value).whileTrue(new HalfSpeedTankDrive(() -> xboxController.getLeftY(), 
             () -> xboxController.getRightX(), m_driveTrain));*/

@@ -11,14 +11,12 @@ import frc.robot.subsystems.*;
 /** Add your docs here. */
 public class ActivateIntake extends SequentialCommandGroup {
 
-    public ActivateIntake(Arm arm, Extender extender, Gripper gripper) {
+    public ActivateIntake(Arm arm, Extender extender) {
         addCommands(
             
     new SetArmPosition(arm, Constants.ArmConstants.intakePosition),
 
-    new SetExtenderPosition(extender, Constants.ExtenderConstants.extendPosition),
-
-    new SetGripperPosition(gripper, Constants.GripperConstants.openPosition) 
+    new SetExtenderPosition(extender, Constants.ExtenderConstants.extendPosition) 
     );
     
     }
