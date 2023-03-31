@@ -14,9 +14,9 @@ public class ActivateIntake extends SequentialCommandGroup {
     public ActivateIntake(Arm arm, Extender extender) {
         addCommands(
             
-    new SetArmPosition(arm, Constants.ArmConstants.intakePosition),
+    new SetArmPosition(arm, Constants.ArmConstants.intakePosition)
 
-    new SetExtenderPosition(extender, Constants.ExtenderConstants.extendPosition) 
+    //new SetExtenderPosition(extender, Constants.ExtenderConstants.extendPosition) 
     );
     
     }

@@ -26,8 +26,8 @@ public class ActivatePlace extends SequentialCommandGroup {
         }
 
         addCommands(
-            new SetArmPosition(arm, arm_setpoint),
-            new SetExtenderPosition(extender, Constants.ExtenderConstants.extendPosition)
+            new SetArmPosition(arm, arm_setpoint)
+            //new SetExtenderPosition(extender, Constants.ExtenderConstants.extendPosition)
         );
     }    
 }

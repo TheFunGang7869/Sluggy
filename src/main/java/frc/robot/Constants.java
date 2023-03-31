@@ -69,15 +69,15 @@ public class Constants {
         public static final double backwardPosition = 0;
 
         // these are all on the front of the robot, for now
-        public static final double intakePosition = 77.59;
-        public static final double lowPlacePosition = 0;
-        public static final double midPlacePosition = 57.09;
-        public static final double highPlacePosition = 0;
-        public static final double stowPosition = 2.46;
+        public static final double intakePosition = -28.3;
+        public static final double lowPlacePosition = 110.37;
+        public static final double midPlacePosition = 110.37;
+        public static final double highPlacePosition = 110.37;
+        public static final double stowPosition = -28.3;
         public static double absRelConversion;
 
 
-        public static final double kP = 0.0;
+        public static final double kP = 0.001;
         public static final double kI = 0.0;
         public static final double kD = 0.0;
         public static final double kIz = 0.0;

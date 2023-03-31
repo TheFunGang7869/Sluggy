@@ -77,13 +77,13 @@ private final XboxController xboxController = new XboxController(1);
     new JoystickButton(joystick, 7).onTrue(Commands.runOnce(() -> setArmSetpointMid()));
     new JoystickButton(joystick, 6).onTrue(Commands.runOnce(() -> setArmSetpointHigh()));
 
-    new JoystickButton(joystick, 3).onTrue(new ActivatePlace(m_arm, m_extender, m_armSetpoint));
+    new JoystickButton(joystick, 1).onTrue(new ActivatePlace(m_arm, m_extender, m_armSetpoint));
 
-    new JoystickButton(joystick, 1).onTrue(new ExecutePlace(m_arm, m_extender));
+    //new JoystickButton(joystick, 1).onTrue(new ExecutePlace(m_arm, m_extender));
 
-    new JoystickButton(joystick, 4).onTrue(new ActivateIntake(m_arm, m_extender));
+    new JoystickButton(joystick, 3).onTrue(new ActivateIntake(m_arm, m_extender));
 
-    new JoystickButton(joystick, 5). onTrue(new ExecuteIntake(m_arm, m_extender));
+    //new JoystickButton(joystick, 5). onTrue(new ExecuteIntake(m_arm, m_extender));
 
     /*new JoystickButton(xboxController, Button.kLeftBumper.value).whileTrue(new HalfSpeedTankDrive(() -> xboxController.getLeftY(), 
             () -> xboxController.getRightX(), m_driveTrain));*/

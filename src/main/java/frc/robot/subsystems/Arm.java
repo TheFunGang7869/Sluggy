@@ -23,11 +23,11 @@ public class Arm extends SubsystemBase {
 
     public Arm() {
         armMotor1 = new CANSparkMax(10, MotorType.kBrushless);
-        armMotor1.setIdleMode(IdleMode.kBrake);
+        armMotor1.setIdleMode(IdleMode.kCoast);
         armMotor1.setInverted(false);
 
         relEncoder = armMotor1.getEncoder();
-        relEncoder.setPositionConversionFactor(1); //units!!
+        relEncoder.setPositionConversionFactor(2.83); // units!!
 
         absEncoder = new Encoder(0, 1, false);
 
@@ -47,7 +47,7 @@ public class Arm extends SubsystemBase {
 
         if(!limitSwitch.get())
         {
-            relEncoder.setPosition(0);
+            relEncoder.setPosition(-31.13);
             armMotor1.set(0);
         }
     }
